@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('experience_tecnologies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('educations_id')->references('id')->on('educations')->cascadeOnDelete();
+            $table->foreignId('experiences_id')->references('id')->on('experiences')->cascadeOnDelete();
             $table->foreignId('tecnologies_id')->references('id')->on('tecnologies')->cascadeOnDelete();
             $table->timestamps();
         });

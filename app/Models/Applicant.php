@@ -9,8 +9,30 @@ class Applicant extends Model
 {
     use HasFactory;
 
-    public function Education()
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'job_title',
+        'city',
+        'website',
+        'email',
+        'phone_number',
+        'about_me'
+    ];
+
+    public function education()
     {
         return $this->hasMany(Education::class);
+    }
+
+    public function experience()
+    {
+        return $this->hasMany(Experience::class);
     }
 }
