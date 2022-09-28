@@ -9,6 +9,8 @@ class Applicant extends Model
 {
     use HasFactory;
 
+    protected $table = 'applicants';
+
     /**
      * The attributes that are mass assignable.
      *

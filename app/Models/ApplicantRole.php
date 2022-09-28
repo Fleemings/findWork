@@ -9,6 +9,8 @@ class ApplicantRole extends Model
 {
     use HasFactory;
 
+    protected $table = 'applicants_roles';
+
     /**
      * The attributes that are mass assignable.
      *

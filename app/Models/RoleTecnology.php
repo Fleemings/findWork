@@ -9,6 +9,8 @@ class RoleTecnology extends Model
 {
     use HasFactory;
 
+    protected $table = 'role_tecnologies';
+
     /**
      * The attributes that are mass assignable.
      *
