@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->float('reviews')->nullable();
+            $table->float('review')->nullable();
             $table->text('short_description');
             $table->timestamps();
         });

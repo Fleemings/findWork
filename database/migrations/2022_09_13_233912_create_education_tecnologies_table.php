@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('education_tecnologies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('educations_id')->references('id')->on('educations')->cascadeOnDelete();
-            $table->foreignId('tecnologies_id')->references('id')->on('tecnologies')->cascadeOnDelete();
+            $table->foreignId('education_id')->references('id')->on('educations')->cascadeOnDelete();
+            $table->foreignId('tecnology_id')->references('id')->on('tecnologies')->cascadeOnDelete();
             $table->timestamps();
         });
     }
