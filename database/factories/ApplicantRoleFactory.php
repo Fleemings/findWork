@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Applicant;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,12 @@ class ApplicantRoleFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'applicant_id' => function (array $education) {
+                return Applicant::factory()->create();
+            },
+            'role_id' => function (array $education) {
+                return Role::factory()->create();
+            }
         ];
     }
 }

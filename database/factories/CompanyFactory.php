@@ -18,7 +18,7 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->company(),
-            'review' => $this->faker->numberBetween($min = 1, $max = 5)(),
+            'review' => $this->faker->numberBetween(1, 5),
             'short_description' => $this->faker->paragraph(),
         ];
     }

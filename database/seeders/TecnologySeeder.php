@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tecnology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class TecnologySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Tecnology::factory()->count(50)->create();
     }
 }

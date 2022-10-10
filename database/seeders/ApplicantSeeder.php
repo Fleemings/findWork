@@ -17,18 +17,9 @@ class ApplicantSeeder extends Seeder
      */
     public function run()
     {
-        // Applicant::factory()
-        //     ->create()
-        //     ->each(function ($education) {
-        //         Education::factory(3)
-        //             ->create(['applicant_id' => $education->id]);
-        //     });
-
-        Applicant::factory()
-            ->has(Education::factory()
-                ->count(3))
-            ->has(Experience::factory()
-                ->count(3))
+        Applicant::factory(50)
+            ->has(Education::factory())
+            ->has(Experience::factory())
             ->create();
     }
 }

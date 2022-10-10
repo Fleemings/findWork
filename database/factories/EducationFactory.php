@@ -28,7 +28,7 @@ class EducationFactory extends Factory
             'degree' => $this->faker->catchPhrase(),
             'start_date' => $this->faker->dateTimeBetween('-20 years', 'now'),
             'end_date' => $this->faker->dateTimeBetween('-10 years', 'now'),
-            'company_name' => $this->faker->company(),
+            'description' => $this->faker->text(),
             'currently' => $this->faker->boolean(),
             'applicant_id' => function (array $applicant) {
                 return Applicant::factory()->create();

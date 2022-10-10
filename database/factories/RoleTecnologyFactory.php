@@ -4,14 +4,14 @@ namespace Database\Factories;
 
 use App\Models\Applicant;
 use App\Models\Role;
-
+use App\Models\Tecnology;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\RoleApplicantFactory>
  */
-class RoleApplicantFactory extends Factory
+class RoleTecnologyFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -24,8 +24,8 @@ class RoleApplicantFactory extends Factory
             'role_id' => function (array $tecnology) {
                 return Role::factory()->create();
             },
-            'applicant_id' => function (array $applicant) {
-                return Applicant::factory()->create();
+            'tecnology_id' => function (array $applicant) {
+                return Tecnology::factory()->create();
             }
         ];
     }

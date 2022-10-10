@@ -9,6 +9,8 @@ class ExperienceTecnology extends Model
 {
     use HasFactory;
 
+    protected $table = 'experiences_tecnologies';
+
     /**
      * The attributes that are mass assignable.
      *

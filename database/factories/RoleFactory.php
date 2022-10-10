@@ -19,7 +19,7 @@ class RoleFactory extends Factory
     {
         return [
             'title' => $this->faker->jobTitle(),
-            'salary' => $this->faker->randomFloat(Null, 1, 3),
+            'salary' => $this->faker->randomFloat(Null, 1, 5),
             'benefit' => $this->faker->text(),
             'description' => $this->faker->dateTimeBetween('-20 years', 'now'),
             'experience_time' => $this->faker->randomDigit(),

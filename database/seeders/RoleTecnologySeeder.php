@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Experience;
-use App\Models\ExperienceTecnology;
+use App\Models\Role;
+use App\Models\RoleTecnology;
 use App\Models\Tecnology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ExperienceTecnologySeeder extends Seeder
+class RoleTecnologySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,9 +17,9 @@ class ExperienceTecnologySeeder extends Seeder
      */
     public function run()
     {
-        ExperienceTecnology::factory(50)->create([
-            'experience_id' => function (array $experience) {
-                return Experience::inRandomOrder()->first();
+        RoleTecnology::factory(50)->create([
+            'role_id' => function (array $role) {
+                return Role::inRandomOrder()->first();
             },
             'tecnology_id' => function (array $tecnology) {
                 return Tecnology::inRandomOrder()->first();
