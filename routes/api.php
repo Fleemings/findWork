@@ -34,8 +34,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/applicant/all', [APIApplicantController::class, 'index']);
     Route::post('/applicant/store', [APIApplicantController::class, 'store']);
     Route::get('/applicant/{id}', [APIApplicantController::class, 'show']);
-    Route::patch('/applicant/update/{id}', [APIApplicantController::class, 'update']);
-    Route::post('/applicant/delete/{id}', [APIApplicantController::class, 'destroy']);
+    Route::put('/applicant/update/{id}', [APIApplicantController::class, 'update']);
+    Route::delete('/applicant/delete/{id}', [APIApplicantController::class, 'destroy']);
 
     // Company CRUD Routes
 
@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/company/store', [CompanyController::class, 'store']);
     Route::get('/company/{id}', [CompanyController::class, 'show']);
     Route::patch('/company/update/{id}', [CompanyController::class, 'update']);
-    Route::post('/company/delete/{id}', [CompanyController::class, 'destroy']);
+    Route::delete('/company/delete/{id}', [CompanyController::class, 'destroy']);
 
     // Education CRUD Routes
 
@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/education/store', [EducationController::class, 'store']);
     Route::get('/education/{id}', [EducationController::class, 'show']);
     Route::patch('/education/update/{id}', [EducationController::class, 'update']);
-    Route::post('/education/delete/{id}', [EducationController::class, 'destroy']);
+    Route::delete('/education/delete/{id}', [EducationController::class, 'destroy']);
 
     // Experience CRUD Routes
 
@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/experience/store', [ExperienceController::class, 'store']);
     Route::get('/experience/{id}', [ExperienceController::class, 'show']);
     Route::patch('/experience/update/{id}', [ExperienceController::class, 'update']);
-    Route::post('/experience/delete/{id}', [ExperienceController::class, 'destroy']);
+    Route::delete('/experience/delete/{id}', [ExperienceController::class, 'destroy']);
 
     // Role CRUD Routes
 
@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/role/store', [RoleController::class, 'store']);
     Route::get('/role/{id}', [RoleController::class, 'show']);
     Route::patch('/role/update/{id}', [RoleController::class, 'update']);
-    Route::post('/role/delete/{id}', [RoleController::class, 'destroy']);
+    Route::delete('/role/delete/{id}', [RoleController::class, 'destroy']);
 
     // Technology CRUD Routes
 
@@ -75,5 +75,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/technology/store', [TecnologyController::class, 'store']);
     Route::get('/technology/{id}', [TecnologyController::class, 'show']);
     Route::patch('/technology/update/{id}', [TecnologyController::class, 'update']);
-    Route::post('/technology/delete/{id}', [TecnologyController::class, 'destroy']);
+    Route::delete('/technology/delete/{id}', [TecnologyController::class, 'destroy']);
 });
