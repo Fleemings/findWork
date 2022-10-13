@@ -19,9 +19,9 @@ class RoleFactory extends Factory
     {
         return [
             'title' => $this->faker->jobTitle(),
-            'salary' => $this->faker->randomFloat(Null, 1, 5),
+            'salary' => $this->faker->randomFloat(1, 1, 5),
             'benefit' => $this->faker->text(),
-            'description' => $this->faker->dateTimeBetween('-20 years', 'now'),
+            'description' => $this->faker->text(),
             'experience_time' => $this->faker->randomDigit(),
             'company_id' => function (array $company) {
                 return Company::factory()->create();

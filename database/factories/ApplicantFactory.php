@@ -17,7 +17,7 @@ class ApplicantFactory extends Factory
     public function definition()
     {
         return [
-            'first_name' => $this->faker->unique()->firstName(),
+            'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'job_title' => $this->faker->jobTitle(),
             'city' => $this->faker->city(),
