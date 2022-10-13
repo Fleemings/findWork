@@ -28,6 +28,9 @@ class CompanyRequest extends FormRequest
                 'required',
                 'string',
             ],
+            'review' => [
+                'required',
+            ],
             'short_description' => [
                 'required',
                 'string',
