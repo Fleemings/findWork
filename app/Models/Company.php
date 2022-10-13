@@ -18,7 +18,7 @@ class Company extends Model
      */
     protected $fillable = [
         'name',
-        'reviews',
+        'review',
         'short_description',
     ];
 

@@ -21,8 +21,9 @@ class Education extends Model
         'degree',
         'start_date',
         'end_date',
-        'company_name',
+        'description',
         'currently',
+        'applicant_id'
     ];
 
     public function applicant()
@@ -32,6 +33,6 @@ class Education extends Model
 
     public function tecnology()
     {
-        return $this->belongsToMany(EducationTecnology::class);
+        return $this->belongsTo(EducationTecnology::class);
     }
 }

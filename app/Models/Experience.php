@@ -24,6 +24,7 @@ class Experience extends Model
         'end_date',
         'currently',
         'description',
+        'applicant_id'
     ];
 
     public function applicant()

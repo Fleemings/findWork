@@ -20,9 +20,9 @@ class Role extends Model
         'title',
         'salary',
         'benefit',
-        'end_date',
         'description',
         'experience_time',
+        'company_id'
     ];
 
     public function company()

@@ -20,11 +20,11 @@ class ApplicantRole extends Model
 
     public function applicant()
     {
-        return $this->belongsTo(Applicant::class, 'applicants_id', 'id');
+        return $this->belongsTo(Applicant::class);
     }
 
     public function role()
     {
-        return $this->belongsTo(Role::class, 'roles_id', 'id');
+        return $this->belongsTo(Role::class);
     }
 }
