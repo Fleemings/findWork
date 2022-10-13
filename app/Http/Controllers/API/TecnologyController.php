@@ -24,7 +24,7 @@ class TecnologyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  TecnologyRequest  $request
+     * @param  \Illuminate\Http\TecnologyRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(TecnologyRequest $request)
@@ -60,13 +60,21 @@ class TecnologyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\TecnologyRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TecnologyRequest $request, $id)
     {
-        //
+        $tecnology = Tecnology::where('id', $id)->first();
+
+        if (is_null($tecnology)) {
+            return $this->error('', 'There is no record to be updated', 404);
+        }
+
+        $tecnology->update($request->all());
+
+        return $this->success(['tecnology' => $tecnology], 'Tecnology successfully updated');
     }
 
     /**

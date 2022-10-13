@@ -58,7 +58,7 @@ class UserController extends Controller
             );
         }
 
-        // Email that needs to matches with the email registered
+        // Email that needs to match with the email registered
         $user = User::where('email', $request->get('email'))->first();
 
         return $this->success([

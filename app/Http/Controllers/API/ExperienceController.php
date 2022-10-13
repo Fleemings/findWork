@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExperienceRequest;
 use App\Models\Experience;
@@ -38,6 +37,7 @@ class ExperienceController extends Controller
             'end_date' => $request->input('end_date'),
             'currently' => $request->input('currently'),
             'description' => $request->input('description'),
+            'applicant_id' => $request->input('applicant_id')
         ]);
 
         return $this->success(['experience' => $experience, 201], 'Experience successfully created');
@@ -51,7 +51,9 @@ class ExperienceController extends Controller
      */
     public function show($id)
     {
-        $experience = Experience::join('experiences_tecnologies', 'experiences_tecnologies.experience_id', '=', 'experiences.id')->where('experiences.id', $id)->get();
+        // Show the informations in the Experience table with the tecnologies related to these experiences
+
+        $experience = Experience::join('experiences_tecnologies', 'experiences.id', '=', 'experiences_tecnologies.id')->where('experiences.id', $id)->get();
 
         if (is_null($experience)) {
             return $this->error(
@@ -61,19 +63,27 @@ class ExperienceController extends Controller
             );
         }
 
-        return $this->success(['experience', $experience], 'Experience has been sucessfully found');
+        return $this->success(['experience' => $experience], 'Experience has been sucessfully found');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ExperienceRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExperienceRequest $request, $id)
     {
-        //
+        $experience = Experience::where('id', $id)->first();
+
+        if (is_null($experience)) {
+            return $this->error('', 'There is no record to be updated', 404);
+        }
+
+        $experience->update($request->all());
+
+        return $this->success(['experience' => $experience], 'Experience successfully updated');
     }
 
     /**

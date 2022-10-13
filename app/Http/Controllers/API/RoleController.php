@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use App\Models\Role;
@@ -36,6 +35,7 @@ class RoleController extends Controller
             'benefit' => $request->input('benefit'),
             'description' => $request->input('description'),
             'experience_time' => $request->input('experience_time'),
+            'company_id' => $request->input('company_id'),
         ]);
 
         return $this->success(['role' => $role, 201], 'Role successfully created');
@@ -49,7 +49,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $role = Role::join('applicants_roles', 'applicants_roles.role_id', '=', 'roles.id')->where('roles.id', $id)->get();
+        // Show the informations in the Role table with the applicats that has applied to the roles
+
+        $role = Role::join('applicants_roles', 'roles.id', '=', 'applicants_roles.id')->where('roles.id', $id)->get();
 
         if (is_null($role)) {
             return $this->error(
@@ -59,19 +61,27 @@ class RoleController extends Controller
             );
         }
 
-        return $this->success(['role', $role], 'Role has been sucessfully found');
+        return $this->success(['role' => $role], 'Role has been sucessfully found');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\RoleRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleRequest $request, $id)
     {
-        //
+        $role = Role::where('id', $id)->first();
+
+        if (is_null($role)) {
+            return $this->error('', 'There is no record to be updated', 404);
+        }
+
+        $role->update($request->all());
+
+        return $this->success(['role' => $role], 'Role successfully updated');
     }
 
     /**

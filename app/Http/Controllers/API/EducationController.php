@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EducationRequest;
 use App\Models\Education;
@@ -29,6 +28,8 @@ class EducationController extends Controller
      */
     public function store(EducationRequest $request)
     {
+
+
         $education = Education::create([
             'school' => $request->input('school'),
             'degree' => $request->input('degree'),
@@ -36,9 +37,12 @@ class EducationController extends Controller
             'end_date' => $request->input('end_date'),
             'description' => $request->input('description'),
             'currently' => $request->input('currently'),
+            'applicant_id' => $request->input('applicant_id')
         ]);
 
-        return $this->success(['company' => $education, 201], 'Education successfully created');
+
+
+        return $this->success(['education' => $education, 201], 'Education successfully created');
     }
 
     /**
@@ -49,7 +53,9 @@ class EducationController extends Controller
      */
     public function show($id)
     {
-        $education = Education::join('educations_tecnologies', 'educations_tecnologies.education_id', '=', 'educations.id')->where('educations.id', $id)->get();
+        // Show the informations in the Education table with the tecnologies related to these educations
+
+        $education = Education::join('educations_tecnologies', 'educations.id', '=', 'educations_tecnologies.id')->where('educations.id', $id)->get();
 
         if (is_null($education)) {
             return $this->error(
@@ -59,19 +65,27 @@ class EducationController extends Controller
             );
         }
 
-        return $this->success(['education', $education], 'Education has been sucessfully found');
+        return $this->success(['education' => $education], 'Education has been sucessfully found');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\EducationRequest $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EducationRequest $request, $id)
     {
-        //
+        $education = Education::where('id', $id)->first();
+
+        if (is_null($education)) {
+            return $this->error('', 'There is no record to be updated', 404);
+        }
+
+        $education->update($request->all());
+
+        return $this->success(['education' => $education], 'Education successfully updated');
     }
 
     /**
