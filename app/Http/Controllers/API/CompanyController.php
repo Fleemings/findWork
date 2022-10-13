@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use App\Traits\JsonResponse;
-use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -48,7 +46,7 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        $company = Company::join('roles', 'roles.company_id', '=', 'companies.id')->where('companies.id', $id)->get();
+        $company = Company::leftjoin('roles', 'roles.company_id', '=', 'companies.id')->where('companies.id', $id)->get();
 
         if (is_null($company)) {
             return $this->error(
@@ -58,19 +56,27 @@ class CompanyController extends Controller
             );
         }
 
-        return $this->success(['company', $company], 'Company has been sucessfully found');
+        return $this->success(['company' => $company]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CompanyRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
-        //
+        $company = Company::where('id', $id)->first();
+
+        if (is_null($company)) {
+            return $this->error('', 'There is no record to be updated', 404);
+        }
+
+        $company->update($request->all());
+
+        return $this->success(['company' => $company], 'Company successfully updated');
     }
 
     /**

@@ -6,10 +6,7 @@ use App\Http\Requests\ApplicantRequest;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ApplicantResource;
-use App\Models\Education;
 use App\Traits\JsonResponse;
-use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -59,7 +56,7 @@ class ApplicantController extends Controller
      */
     public function show($id)
     {
-
+        // Show all the applicant's data including experience and education
         $applicant = Applicant::join('experiences', 'experiences.applicant_id', '=', 'applicants.id')
             ->join('educations', 'educations.applicant_id', '=', 'applicants.id')->where('applicants.id', $id)->get();
 
@@ -71,17 +68,17 @@ class ApplicantController extends Controller
             );
         }
 
-        return $this->success(['applicant', $applicant]);
+        return $this->success(['applicant' => $applicant], 'Applicant has been sucessfully found');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  Request $request
-
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ApplicantRequest $request, $id)
     {
         $applicant = Applicant::where('id', $id)->first();
 
