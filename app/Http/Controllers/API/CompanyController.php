@@ -46,7 +46,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        $company = Company::leftjoin('roles', 'roles.company_id', '=', 'companies.id')->where('companies.id', $id)->get();
+
+        $company = Company::leftjoin('roles', 'companies.id', '=', 'roles.company_id')->where('companies.id', $id)->get();
 
         if (is_null($company)) {
             return $this->error(
