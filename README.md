@@ -79,12 +79,13 @@ Postman was used to test all API routes in this project.
 - To check the endpoints, go to:
 
 ```bash
-  
+  cat .\postman\api_findwork.postman_collection.json 
 ```
 
 - To check the enviroment variables, go to:
 
 ```bash
+    cat .\postman\api_findwork.postman_environment.json
   
 ```
 
